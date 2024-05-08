@@ -5,6 +5,8 @@ export const contactSlice = createSlice({
   initialState: {
     contacts: [],
     base: [],
+    isLoading: false,
+    error: null,
     filter: '',
   },
   reducers: {
@@ -23,7 +25,7 @@ export const contactSlice = createSlice({
       state.filter = action.payload;
       const items = [...state.base];
       const result = items.filter(word =>
-        word.name.toLowerCase().includes(action.payload)
+        word.name.toLowerCase().includes(action.payload.toLowerCase())
       );
       if (action.payload === '') {
         state.contacts = [...items];
@@ -35,5 +37,13 @@ export const contactSlice = createSlice({
   },
 });
 
-export const { addContact, deleteContact, filterContact } =
-  contactSlice.actions;
+export const {
+  addContact,
+  deleteContact,
+  filterContact,
+  fetchingError,
+  fetchingSuccess,
+  fetchingInProgress,
+} = contactSlice.actions;
+
+export const contactsReducer = contactSlice.reducer;
