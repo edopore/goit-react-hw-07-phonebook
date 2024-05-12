@@ -44,6 +44,7 @@ export function App() {
   const onDeleteContact = event => {
     console.log(event.target.id);
     dispatch(deleteContact(event.target.id));
+    dispatch(fetchContacts());
   };
 
   const handleFilter = event => {

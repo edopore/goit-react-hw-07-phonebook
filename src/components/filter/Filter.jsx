@@ -11,6 +11,7 @@ export default class Filter extends Component {
           type="text"
           name="query"
           placeholder="John Doe..."
+          value={this.props.filterValue}
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         />
       </div>

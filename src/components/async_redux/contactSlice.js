@@ -73,6 +73,7 @@ export const contactSlice = createSlice({
         );
         state.contacts.splice(index, 1);
         state.base = [...state.contacts];
+        state.filter = '';
         state.isLoading = false;
         state.error = null;
       })
