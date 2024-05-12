@@ -13,7 +13,10 @@ export default class Contacts extends Component {
                 <p>
                   {contact.name}: {contact.phoneNumber}
                 </p>
-                <button onClick={this.props.handleDelete} id={contact.id}>
+                <button
+                  onClick={this.props.handleDeleteContact}
+                  id={contact.id}
+                >
                   Delete
                 </button>
               </li>

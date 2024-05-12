@@ -7,6 +7,7 @@ export default class Filter extends Component {
       <div className="submit-form flex mb-2">
         <label htmlFor="find">Find contacts by Name</label>
         <input
+          onChange={this.props.filterContacts}
           type="text"
           name="query"
           placeholder="John Doe..."

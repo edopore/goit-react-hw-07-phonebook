@@ -6,7 +6,7 @@ export default class ContactForm extends Component {
   render() {
     return (
       <div>
-        <form className="submit-form">
+        <form className="submit-form" onSubmit={this.props.handleAddContacts}>
           <div className="flex mb-2">
             <label>Name</label>
             <input

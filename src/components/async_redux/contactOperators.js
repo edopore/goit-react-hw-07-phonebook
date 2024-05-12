@@ -14,3 +14,35 @@ export const fetchContacts = createAsyncThunk(
     }
   }
 );
+export const createContact = createAsyncThunk(
+  'contacts/createContact',
+  async (contact, thunkAPI) => {
+    try {
+      const OPTIONS = {
+        method: 'POST',
+        body: JSON.stringify(contact),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      };
+      const response = await fetch(BASE_URL + 'contacts', OPTIONS);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async (contactId, thunkAPI) => {
+    try {
+      const OPTIONS = {
+        method: 'DELETE',
+      };
+      const response = await fetch(BASE_URL + `contacts/${contactId}`, OPTIONS);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
