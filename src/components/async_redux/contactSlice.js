@@ -19,7 +19,7 @@ export const contactSlice = createSlice({
       state.filter = action.payload;
       const items = [...state.base];
       const result = items.filter(word =>
-        word.name.toLowerCase().includes(action.payload)
+        word.name.toLowerCase().includes(action.payload.toLowerCase())
       );
       if (action.payload === '') {
         state.contacts = [...items];
