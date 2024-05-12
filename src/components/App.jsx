@@ -24,7 +24,18 @@ export function App() {
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getErrorStatus);
 
+  const contactList = useSelector(state => state.contacts.contacts);
   const filterValue = useSelector(state => state.contacts.filter);
+
+  const searchContact = name => {
+    const result = contactList.filter(word =>
+      word.name.toLowerCase().includes(name.toLowerCase())
+    );
+    if (result.length > 0) {
+      return true;
+    }
+    return false;
+  };
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -32,12 +43,19 @@ export function App() {
 
   const onAddContacts = event => {
     event.preventDefault();
-    dispatch(
-      createContact({
-        name: event.target.name.value,
-        phoneNumber: event.target.number.value,
-      })
-    );
+
+    const name = event.target.name.value;
+    const phoneNumber = event.target.number.value;
+
+    searchContact(name)
+      ? alert(`${name} already exists`)
+      : dispatch(
+          createContact({
+            name: name,
+            phoneNumber: phoneNumber,
+          })
+        );
+
     event.target.reset();
   };
 
